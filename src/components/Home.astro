@@ -1,0 +1,383 @@
+---
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Label from '../components/Label.astro';
+import SkillLayout from '../components/SkillLayout.astro';
+import { skills } from '../utils/skills.ts';
+import { Image } from 'astro:assets';
+import astro from '../assets/about-astro.png';
+---
+
+<div class="flex w-full flex-col gap-y-10">
+  <section
+    class="flex flex-col items-center gap-y-7"
+    itemscope
+    itemtype="https://schema.org/Person"
+  >
+    <Image
+      src={astro}
+      alt="Rubén Romera Sánchez - Software Developer - Foto de perfil de Ruben Romera"
+      itemprop="image"
+      class="h-40 w-auto p-2"
+      loading="eager"
+    />
+
+    <div class="flex flex-col items-center gap-y-4">
+      <h1 class="text-center text-3xl font-bold" itemprop="name">
+        <span itemprop="givenName">Rubén</span>{' '}
+        <span itemprop="familyName">Romera Sánchez</span>
+      </h1>
+      <h2 class="text-center text-lg text-muted-foreground" itemprop="jobTitle">
+        Software Developer
+      </h2>
+      <p class="sr-only">
+        Ruben Romera, Rubén Romera, Ruben programador, Rubén programador, Ruben
+        Romera programador, Rubén Romera programador, Ruben desarrollador, Rubén
+        desarrollador, Ruben IA, Rubén IA, Ruben Denia, Rubén Denia
+      </p>
+      <a
+        href="mailto:contacto@rubenromera.com"
+        itemprop="email"
+        class="flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:opacity-75 hover:shadow-md"
+      >
+        <span class="relative flex items-center justify-center">
+          <span
+            class="absolute inline-flex h-2 w-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75"
+          ></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400"
+          ></span>
+        </span>
+
+        <p class="font-medium">contacto@rubenromera.com</p>
+      </a>
+      <div class="flex flex-wrap justify-center gap-x-7 gap-y-3">
+        <Label title="Full-Stack Developer - AI Expert - Technical Instructor">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="h-5 w-5"
+            slot="icon"
+            ><path
+              fill="currentColor"
+              d="M4.615 20q-.69 0-1.152-.462Q3 19.075 3 18.385v-9.77q0-.69.463-1.152Q3.925 7 4.615 7H9V5.615q0-.69.463-1.152Q9.925 4 10.615 4h2.77q.69 0 1.153.463q.462.462.462 1.152V7h4.385q.69 0 1.152.463q.463.462.463 1.152v9.77q0 .69-.462 1.152q-.463.463-1.153.463zm0-1h14.77q.23 0 .423-.192q.192-.193.192-.423v-9.77q0-.23-.192-.423Q19.615 8 19.385 8H4.615q-.23 0-.423.192Q4 8.385 4 8.615v9.77q0 .23.192.423q.193.192.423.192M10 7h4V5.615q0-.23-.192-.423Q13.615 5 13.385 5h-2.77q-.23 0-.423.192q-.192.193-.192.423zM4 19V8z"
+            ></path></svg
+          >
+        </Label>
+        <Label title="Denia">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="h-5 w-5"
+            slot="icon"
+            ><path
+              fill="currentColor"
+              d="M12.003 11.73q.668 0 1.14-.475q.472-.475.472-1.143t-.475-1.14q-.476-.472-1.143-.472t-1.14.476q-.472.475-.472 1.143t.475 1.14q.476.472 1.143.472M12 19.677q2.82-2.454 4.458-4.991q1.638-2.538 1.638-4.39q0-2.744-1.737-4.53T12 3.981q-2.621 0-4.359 1.785t-1.737 4.53q0 1.852 1.638 4.39q1.639 2.537 4.458 4.99m0 1.343q-3.525-3.117-5.31-5.814q-1.786-2.697-1.786-4.909q0-3.173 2.066-5.234Q9.037 3 12 3t5.03 2.062q2.066 2.061 2.066 5.234q0 2.212-1.785 4.909q-1.786 2.697-5.311 5.814m0-10.904"
+            ></path></svg
+          >
+        </Label>
+        <Label
+          title="LinkedIn"
+          as="a"
+          href="https://www.linkedin.com/in/rub%C3%A9n-romera-s%C3%A1nchez-a8798a1b0/"
+          target="_blank"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            slot="icon"
+            class="h-5 w-5 text-foreground/75"
+            ><path
+              fill="currentColor"
+              d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248c-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586c.173-.431.568-.878 1.232-.878c.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252c-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"
+            ></path></svg
+          >
+        </Label>
+        <Label
+          title="GitHub"
+          as="a"
+          href="https://github.com/romera02rrs"
+          target="_blank"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            slot="icon"
+            class="h-6 w-6 text-foreground/75"
+          >
+            <path
+              fill="currentColor"
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.303 3.438 9.8 8.207 11.385c.6.11.793-.26.793-.577c0-.285-.01-1.037-.015-2.03c-3.338.724-4.042-1.61-4.042-1.61c-.546-1.387-1.333-1.755-1.333-1.755c-1.09-.745.083-.73.083-.73c1.205.086 1.838 1.236 1.838 1.236c1.07 1.834 2.805 1.305 3.49.998c.108-.776.418-1.305.762-1.605c-2.665-.298-5.466-1.332-5.466-5.93c0-1.314.465-2.38 1.236-3.22c-.124-.3-.54-1.523.12-3.176c0 0 1.01-.322 3.3 1.23c.96-.266 1.98-.397 3-.402c1.02.005 2.04.136 3 .402c2.29-1.552 3.297-1.23 3.297-1.23c.66 1.653.245 2.876.12 3.176c.765.84 1.236 1.906 1.236 3.22c0 4.61-2.805 5.627-5.476 5.92c.42.367.795 1.095.795 2.206c0 1.592-.015 2.876-.015 3.27c0 .313.188.688.8.573C20.565 21.793 24 17.296 24 12C24 5.37 18.627 0 12 0z"
+            ></path>
+          </svg>
+        </Label>
+      </div>
+    </div>
+  </section>
+
+  <Section title="Presentación" class="flex">
+    <div class="flex flex-col gap-y-4">
+      <p class="text-muted-foreground">
+        ¡Hola! 👋, soy <strong>Rubén</strong>, un <strong
+          >Software Developer</strong
+        > con experiencia sólida. Formado en Inteligencia Artificial y en Big Data,
+        disfruto trabajar en equipo, aprender y enseñar. Siempre busco oportunidades
+        para crecer y contribuir al éxito de los proyectos en los que participo.
+
+        <span id="extraText" style="display: none;">
+          Trabajé en el desarrollo FrontEnd de grandes empresas como <strong
+            >Caixabank</strong
+          >, alcanzando el 100% de los objetivos establecidos en los plazos
+          acordados. Desarrollé modelos de Machine Learning para importantes
+          compañías eléctricas como <strong>TOTEM Towerco</strong> junto con <strong
+            >Orange</strong
+          > prediciendo consumos y posibles fallos operativos. Especializado en Splunk,
+          implementé sistemas de monitorización de logs y análisis en tiempo real
+          que redujeron en un 45% el tiempo de respuesta ante incidencias críticas
+          en las empresas <strong>INDITEX</strong>, <strong>IDIADA</strong> y <strong
+            >Bip&Drive</strong
+          >.
+        </span>
+      </p>
+      <div>
+        <button
+          id="btn-saber-mas"
+          class="text-gold bg-gold inline-flex cursor-pointer items-center gap-x-1 rounded-lg border border-border px-2 py-1 text-sm transition-all hover:bg-input"
+        >
+          Saber más
+        </button>
+        <button
+          id="btn-saber-menos"
+          class="text-gold bg-gold hidden cursor-pointer items-center gap-x-1 rounded-lg border border-border px-2 py-1 text-sm transition-all hover:bg-input"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </Section>
+
+  <Section title="Experiencia">
+    <Card
+      heading="Software Developer & Technical Instructor"
+      subheading="Neverhack"
+      date="Jul 2024 - Actualidad"
+      imagePath="/src/assets/neverhack_logo.png"
+      altText="Neverhack - Empresa donde trabaja Ruben Romera como Software Developer e Instructor Técnico"
+      imageClass="h-12 w-auto md:-left-16"
+    >
+      <ul class="ml-4 list-disc text-muted-foreground">
+        <li>
+          Análisis de datos y monitorización de logs con <strong>Splunk</strong> para
+          <strong>INDITEX</strong>, <strong>IDIADA</strong> y <strong
+            >Bip&Drive</strong
+          >.
+        </li>
+        <li>
+          Desarrollo de modelos de <strong>machine learning</strong> con Python y
+          Google Cloud para
+          <strong>TOTEM Towerco</strong> junto con <strong>Orange</strong>.
+        </li>
+        <li>
+          Desarrollo web <strong>Full Stack</strong> para herramientas internas.
+        </li>
+      </ul>
+    </Card>
+    <Card
+      heading="Web Frontend Developer"
+      subheading="NTT Data - CaixaBank"
+      date="Sep 2022 - Jun 2024 (1 año y 10 meses)"
+      imagePath="/src/assets/nttdata_logo.jpg"
+      altText="NTT Data - Empresa donde trabajó Ruben Romera como Web Frontend Developer para CaixaBank"
+      imageClass="h-12 w-auto md:-left-16"
+    >
+      <ul class="ml-4 list-disc text-muted-foreground">
+        <li>
+          Desarrollo del frontend con <strong>React</strong> para el proyecto <strong
+            >Caixabank</strong
+          >.
+        </li>
+        <li>
+          Desarrollo del frontend con <strong>React Native</strong> para el proyecto
+          <strong>Pepephone</strong>.
+        </li>
+      </ul>
+    </Card>
+  </Section>
+
+  <Section title="Proyectos">
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
+      <ProjectCard
+        href="https://veritas.rubenromera.com/"
+        heading="Veritas - Descubre tu Verdad"
+        subheading="App móvil Full Stack con React Native + Node + MongoDB, impulsada por IA para el análisis emocional y autoconocimiento."
+        imagePath="/src/assets/veritas-banner.jpg"
+        altText="Proyecto Veritas de Ruben Romera - App móvil Full Stack con IA para análisis emocional"
+        span={2}
+      />
+      <ProjectCard
+        href="https://www.linkedin.com/posts/rub%C3%A9n-romera-s%C3%A1nchez-a8798a1b0_mcp-inteligenciaartificial-mcp-activity-7356723432777990145-0FDp"
+        heading="Tech Talk - Neverhack"
+        subheading="Masterclass dirigida a todos los desarrolladores de la empresa Neverhack."
+        imagePath="/src/assets/AI-talk-crop.jpg"
+        altText="Tech Talk de Ruben Romera sobre Inteligencia Artificial en Neverhack"
+      />
+      <ProjectCard
+        href="https://app.rubenromera.com"
+        heading="app.rubenromera.com"
+        subheading="Web construida con React para promocionar mis servicios como freelance."
+        imagePath="/src/assets/app-rubenromera.jpg"
+        altText="Web de promoción de servicios freelance de Ruben Romera - app.rubenromera.com construido con React"
+      />
+      <ProjectCard
+        href="https://aiarosa.vercel.app"
+        heading="AIArosa"
+        subheading="Web construída con Next.js para la venta de soluciones de inteligencia artificial."
+        imagePath="/src/assets/AIArosa_landing_page.jpg"
+        altText="Proyecto AIArosa de Ruben Romera - Landing page con Next.js para soluciones de IA"
+      />
+      <ProjectCard
+        href="https://flipperpool.com"
+        heading="Flipperpool"
+        subheading="Mobile-first web construída con Vue para una empresa de construcción."
+        imagePath="/src/assets/Flipperpool_landing_page.jpg"
+        altText="Proyecto Flipperpool de Ruben Romera - Web construida con Vue para empresa de construcción"
+      />
+      <!-- <ProjectCard
+					heading='Próximamente...'
+					subheading='Web dedicada a los algoritmos de aprendizaje atutomático.'
+					imagePath='/src/assets/coming-soon.png'
+					altText='Landing page del portfolio rubenromera.com'
+				/> -->
+    </div>
+  </Section>
+
+  <Section title="Educación">
+    <Card
+      heading="Master de FP en Inteligencia Artificial y Big Data"
+      subheading="IES La Mar | Jávea"
+      date="Sep 2023 - Jul 2024 (9 meses)"
+      imagePath="/src/assets/about-astro.png"
+      altText="IES La Mar Jávea - Formación de Ruben Romera en Inteligencia Artificial y Big Data"
+      imageClass="h-12 w-auto md:-left-16"
+    />
+    <Card
+      heading="Desarrollo de Aplicaciones Web"
+      subheading="IES Enric Valor | Pego"
+      date="Sep 2020 - Jul 2022 (1 año y 9 meses)"
+      imagePath="/src/assets/about-astro.png"
+      altText="IES Enric Valor Pego - Formación de Ruben Romera en Desarrollo de Aplicaciones Web"
+      imageClass="h-12 w-auto md:-left-16"
+    />
+    <Card
+      heading="Sistemas Microinformáticos y Redes"
+      subheading="IES Historiador Chabas | Denia"
+      date="Sep 2018 - jun 2020 (1 año y 9 meses)"
+      imagePath="/src/assets/about-astro.png"
+      altText="IES Historiador Chabas Denia - Formación de Ruben Romera en Sistemas Microinformáticos y Redes"
+      imageClass="h-12 w-auto md:-left-16"
+    />
+  </Section>
+
+  <Section title="Certificados">
+    <Card
+      as="a"
+      heading="Prepare Data for ML APIs on Google Cloud"
+      subheading=""
+      date="Oct 18 2024"
+      imagePath="/src/assets/google_cloud_logo.png"
+      altText="Certificado de Ruben Romera - Prepare Data for ML APIs on Google Cloud"
+      imageClass="h-11 w-auto md:-left-16"
+      href="https://www.cloudskillsboost.google/public_profiles/2298d318-b525-4469-ab63-ef4f55406230/badges/12183352?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+    />
+    <Card
+      as="a"
+      heading="GDPR Compliance: Essential Training"
+      subheading=""
+      date="Gen 17 2025"
+      imagePath="/src/assets/linkedin_badge_logo.png"
+      altText="Certificado de Ruben Romera - GDPR Compliance: Essential Training"
+      imageClass="h-11 w-auto md:-left-16"
+      href="https://lnkd.in/dujUvAVC"
+    />
+    <Card
+      as="a"
+      heading="Docker - Guía práctica de uso para desarrolladores"
+      subheading="El certificado tiene otro nombre debido al uso de una cuenta de empresa compartida."
+      date="Nov 27 2024"
+      imagePath="/src/assets/udemy_logo.png"
+      altText="Certificado de Ruben Romera - Docker para desarrolladores"
+      imageClass="h-11 w-auto md:-left-16"
+      href="https://nttdatalearn.udemy.com/certificate/UC-bfe3e243-e92f-4c75-b5e4-a747c6afa207/"
+    />
+  </Section>
+
+  <Section title="Habilidades">
+    <p class="sr-only">
+      Ruben Romera domina tecnologías de desarrollo software, machine learning,
+      big data, React, Next.js, Vue, Node.js, Python, Splunk y Google Cloud.
+      Rubén Romera es Software Developer especializado en Full Stack.
+    </p>
+    <SkillLayout title="Idiomas" skills={skills.languages} />
+    <SkillLayout title="Frontend" skills={skills.frontend} />
+    <SkillLayout title="Backend" skills={skills.backend} />
+    <SkillLayout title="IA y Big Data" skills={skills.data_ai_ml} />
+    <SkillLayout title="Devops" skills={skills.devops_cloud} />
+    <SkillLayout title="Otros" skills={skills.others} />
+  </Section>
+</div>
+<a
+  href="mailto:contacto@rubenromera.com"
+  class="mt-10 flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:opacity-75 hover:shadow-md"
+>
+  <span class="relative flex items-center justify-center">
+    <span
+      class="absolute inline-flex h-2 w-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75"
+    ></span>
+    <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400"></span>
+  </span>
+
+  <p class="font-medium">contacto@rubenromera.com</p>
+</a>
+
+<script>
+  const extraText = document.getElementById('extraText');
+  const btnmas = document.getElementById('btn-saber-mas');
+  const btnmenos = document.getElementById('btn-saber-menos');
+
+  if (extraText) {
+    if (btnmas && btnmenos) {
+      document.addEventListener('DOMContentLoaded', function () {
+        btnmas.addEventListener('click', function () {
+          extraText.style.display = 'inline';
+          btnmas.style.display = 'none';
+          btnmenos.style.display = 'inline';
+        });
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        btnmenos.addEventListener('click', function () {
+          extraText.style.display = 'none';
+          btnmenos.style.display = 'none';
+          btnmas.style.display = 'inline';
+        });
+      });
+    }
+  }
+</script>
+
+<style>
+  .bg-gold {
+    background-image: linear-gradient(135deg, #f6d72a, #ffa000);
+    color: #3e2c00;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition:
+      background-image 0.3s ease,
+      transform 0.2s ease;
+  }
+
+  .bg-gold:hover {
+    background-image: linear-gradient(135deg, #fbcd36, #ff8f00);
+    transform: translateY(-3px);
+  }
+</style>

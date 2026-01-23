@@ -1,0 +1,30 @@
+---
+import { cn } from '@/utils/tailwind';
+
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+  title: string;
+};
+
+const {
+  class: className,
+  as: Tag = 'div',
+  title,
+  href,
+  ...props
+} = Astro.props;
+---
+
+<Tag
+  class={cn(
+    className,
+    'flex flex-row items-center justify-center gap-x-2',
+    href && 'hover:opacity-75 transition-all transform scale-110'
+  )}
+  href={href}
+  {...props}
+>
+  <slot name="icon" />
+  <p>{title}</p>
+</Tag>

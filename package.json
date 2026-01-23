@@ -13,13 +13,17 @@
     "format:check": "prettier . --check"
   },
   "dependencies": {
-    "astro": "^5.16.14"
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.14",
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^8.53.1",
+    "clsx": "^2.1.1",
     "eslint": "^9.39.2",
     "eslint-plugin-astro": "^1.5.0",
     "prettier": "^3.8.1",
-    "prettier-plugin-astro": "^0.14.1"
+    "prettier-plugin-astro": "^0.14.1",
+    "tailwind-merge": "^3.4.0"
   }
 }

@@ -16,6 +16,14 @@ export default [
     },
   },
 
+  // Soporte para archivos TypeScript (.ts, .tsx)
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: tsParser,
+    },
+  },
+
   // Aquí puedes añadir overrides de reglas si lo necesitas
   {
     rules: {

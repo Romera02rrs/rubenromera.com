@@ -1,15 +1,105 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import ThemeProvider from '@/components/ThemeProvider.astro';
+
+// BaseHead.astro
+const CANONICAL = 'https://rubenromera.com/';
+const TITLE = 'Rubén Romera';
+const DESCRIPTION =
+  'Portfolio profesional de Rubén Romera, Software Developer.';
+
+const OG_IMAGE = 'https://rubenromera.com/social-card.png';
+
+// Schema.org
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Rubén Romera',
+  url: CANONICAL,
+  image: OG_IMAGE,
+  jobTitle: 'Software Developer',
+  sameAs: [
+    'https://github.com/romera02rrs',
+    'https://www.linkedin.com/in/rub%C3%A9n-romera-s%C3%A1nchez-a8798a1b0/',
+  ],
+};
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{TITLE}</title>
+    <meta name="description" content={DESCRIPTION} />
+    <link rel="canonical" href={CANONICAL} />
+
+    <!-- Favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0f172a"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={TITLE} />
+    <meta property="og:description" content={DESCRIPTION} />
+    <meta property="og:url" content={CANONICAL} />
+    <meta property="og:image" content={OG_IMAGE} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Portfolio de Rubén Romera" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={TITLE} />
+    <meta name="twitter:description" content={DESCRIPTION} />
+    <meta name="twitter:image" content={OG_IMAGE} />
+    <meta name="twitter:image:alt" content="Portfolio de Rubén Romera" />
+
+    <!-- Structured Data -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(schema)}
+    />
   </head>
-  <body>
-    <slot />
+  <body class="flex justify-center bg-background">
+    <ThemeProvider />
+    <main
+      class="flex min-h-screen w-screen max-w-[60rem] flex-col items-center px-6 pb-10 pt-7 font-satoshi text-[0.92rem] leading-relaxed sm:px-10 lg:px-10"
+    >
+      <Header />
+      <slot />
+      <Footer />
+    </main>
   </body>
 </html>
 
