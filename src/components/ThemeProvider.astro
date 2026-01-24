@@ -7,36 +7,81 @@
     return storedTheme || (lightModePref.matches ? 'light' : 'dark');
   }
 
-  function setTheme(newTheme) {
+  function setTheme(newTheme, event) {
     if (newTheme !== 'light' && newTheme !== 'dark') {
       return console.log(
         `Invalid theme value '${newTheme}' received. Expected 'light' or 'dark'.`
       );
     }
 
-    localStorage.setItem('theme', newTheme);
-
     const root = document.documentElement;
 
-    // if current dark theme and new theme is dark, return
-    if (newTheme === 'dark' && root.classList.contains('dark')) {
-      return;
-    } else if (newTheme === 'light' && !root.classList.contains('dark')) {
+    // If current theme matches new theme, do nothing
+    if (
+      (newTheme === 'dark' && root.classList.contains('dark')) ||
+      (newTheme === 'light' && !root.classList.contains('dark'))
+    ) {
       return;
     }
 
-    root.classList.toggle('dark');
+    const updateTheme = () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', newTheme);
+    };
+
+    if (!document.startViewTransition) {
+      updateTheme();
+      return;
+    }
+
+    const transition = document.startViewTransition(updateTheme);
+
+    transition.ready.then(() => {
+      const x = event?.clientX ?? window.innerWidth / 2;
+      const y = event?.clientY ?? window.innerHeight / 2;
+
+      const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      root.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 400,
+          easing: 'ease-out',
+          pseudoElement: '::view-transition-new(root)',
+        }
+      );
+    });
   }
 
   // Initial Setup
-  setTheme(getUserPref());
+  const initialTheme = getUserPref();
+  if (initialTheme === 'dark') {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
 
   // View Transitions hook to restore theme
-  document.addEventListener('astro:after-swap', () => setTheme(getUserPref()));
+  document.addEventListener('astro:after-swap', () => {
+    const theme = getUserPref();
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  });
 
   // Listen for theme-change custom event
   document.addEventListener('theme-change', (e) => {
-    setTheme(e.detail.theme);
+    setTheme(e.detail.theme, e.detail.event);
   });
 
   // Listen for prefers-color-scheme change

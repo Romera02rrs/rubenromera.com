@@ -4,7 +4,9 @@ import { cn } from '@/utils/tailwind.ts';
 const { class: className, title } = Astro.props;
 ---
 
-<section class={cn(className, 'flex flex-col gap-y-5 md:flex-row md:gap-y-0')}>
+<section
+  class={cn(className, 'flex flex-col gap-y-5 md:flex-row md:gap-y-0 bounce')}
+>
   <div class="text-xl font-semibold md:w-1/3">
     <h2>{title}</h2>
   </div>

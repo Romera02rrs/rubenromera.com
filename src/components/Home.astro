@@ -19,11 +19,11 @@ import astro from '../assets/about-astro.png';
       src={astro}
       alt="Rubén Romera Sánchez - Software Developer - Foto de perfil de Ruben Romera"
       itemprop="image"
-      class="h-40 w-auto p-2"
+      class="h-40 w-auto p-2 bounce"
       loading="eager"
     />
 
-    <div class="flex flex-col items-center gap-y-4">
+    <div class="flex flex-col items-center gap-y-4 bounce">
       <h1 class="text-center text-3xl font-bold" itemprop="name">
         <span itemprop="givenName">Rubén</span>{' '}
         <span itemprop="familyName">Romera Sánchez</span>
@@ -340,6 +340,13 @@ import astro from '../assets/about-astro.png';
 </a>
 
 <script>
+  // Logic for the animations
+  import { animate, stagger } from 'motion';
+
+  animate('.fade', { y: 0, opacity: 1 }, { delay: stagger(0.1) });
+  animate('.bounce', { opacity: [0, 1], y: [50, 0] }, { delay: stagger(0.1) });
+
+  // Logic for the "Saber más" button
   const extraText = document.getElementById('extraText');
   const btnmas = document.getElementById('btn-saber-mas');
   const btnmenos = document.getElementById('btn-saber-menos');

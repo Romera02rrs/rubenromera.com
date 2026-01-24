@@ -94,8 +94,9 @@ const schema = {
   <body class="flex justify-center bg-background">
     <ThemeProvider />
     <main
-      class="flex min-h-screen w-screen max-w-[60rem] flex-col items-center px-6 pb-10 pt-7 font-satoshi text-[0.92rem] leading-relaxed sm:px-10 lg:px-10"
+      class="flex min-h-screen w-screen max-w-240 flex-col items-center px-6 pb-10 pt-7 font-satoshi text-[0.92rem] leading-relaxed sm:px-10 lg:px-10"
     >
+      <div id="follower" class="ball pointer-events-none fixed z-50"></div>
       <Header />
       <slot />
       <Footer />
@@ -103,11 +104,47 @@ const schema = {
   </body>
 </html>
 
+<script>
+  import { animate } from 'motion';
+
+  const follower = document.getElementById('follower');
+
+  if (follower) {
+    window.addEventListener('pointermove', (e) => {
+      const { clientX, clientY } = e;
+
+      // Animate to new position with a spring effect
+      animate(
+        follower,
+        {
+          x: clientX - follower.offsetWidth / 2,
+          y: clientY - follower.offsetHeight / 2,
+        },
+        {
+          type: 'spring',
+          damping: 20,
+          stiffness: 300,
+          restDelta: 0.001,
+        }
+      );
+    });
+  }
+</script>
+
 <style>
   html,
   body {
     margin: 0;
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  .ball {
+    position: fixed;
+    top: 5px;
+    left: 25px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-foreground);
+    border-radius: 50%;
   }
 </style>
