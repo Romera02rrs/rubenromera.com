@@ -37,6 +37,15 @@ const schema = {
     <meta name="description" content={DESCRIPTION} />
     <link rel="canonical" href={CANONICAL} />
 
+    <!-- Preload critical font for LCP -->
+    <link
+      rel="preload"
+      href="/fonts/Satoshi-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <!-- Favicons -->
     <link
       rel="apple-touch-icon"
@@ -107,9 +116,10 @@ const schema = {
 <script>
   import { animate } from 'motion';
 
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const follower = document.getElementById('follower');
 
-  if (follower) {
+  if (follower && hasFinePointer) {
     window.addEventListener('pointermove', (e) => {
       const { clientX, clientY } = e;
 
@@ -146,5 +156,13 @@ const schema = {
     height: 20px;
     background-color: var(--color-foreground);
     border-radius: 50%;
+    /* Oculto por defecto; solo se muestra con CSS en dispositivos con ratón */
+    display: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .ball {
+      display: block;
+    }
   }
 </style>

@@ -1,11 +1,14 @@
 ---
 import { cn } from '@/utils/tailwind';
 
-import type { HTMLTag, Polymorphic } from 'astro/types';
-
-type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+interface LabelProps {
   title: string;
-};
+  class?: string;
+  as?: 'div' | 'a';
+  href?: string;
+  target?: string;
+  rel?: string;
+}
 
 const {
   class: className,
@@ -13,7 +16,7 @@ const {
   title,
   href,
   ...props
-} = Astro.props;
+} = Astro.props as LabelProps;
 ---
 
 <Tag
