@@ -2,7 +2,7 @@ export const skills = {
   languages: [
     { name: 'Castellano - Nativo', gold: false },
     { name: 'Valenciano - Nativo', gold: false },
-    { name: 'Inglés - B2 (Upper-Intermediate) – strong comprehension, conversational speaking', gold: false },
+    { name: 'Inglés - B2 (Upper-Intermediate)', gold: false },
   ],
   frontend: [
     { name: 'HTML', gold: true },
