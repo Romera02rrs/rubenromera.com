@@ -1,7 +1,9 @@
 ---
 import Section from '../components/Section.astro';
 import Card from '../components/Card.astro';
+import ExperienceGroup from '../components/ExperienceGroup.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { experience } from '../utils/experience.ts';
 import Label from '../components/Label.astro';
 import SkillLayout from '../components/SkillLayout.astro';
 import { skills } from '../utils/skills.ts';
@@ -159,51 +161,7 @@ import astro from '../assets/about-astro.png';
   </Section>
 
   <Section title="Experiencia">
-    <Card
-      heading="Software Developer & Technical Instructor"
-      subheading="Neverhack"
-      date="Jul 2024 - Actualidad"
-      imagePath="/src/assets/neverhack_logo.jpg"
-      altText="Neverhack - Empresa donde trabaja Ruben Romera como Software Developer e Instructor Técnico"
-      imageClass="h-12 w-auto md:-left-16"
-    >
-      <ul class="ml-4 list-disc text-muted-foreground">
-        <li>
-          Análisis de datos y monitorización de logs con <strong>Splunk</strong> para
-          <strong>INDITEX</strong>, <strong>IDIADA</strong> y <strong
-            >Bip&Drive</strong
-          >.
-        </li>
-        <li>
-          Desarrollo de modelos de <strong>machine learning</strong> con Python y
-          Google Cloud para
-          <strong>TOTEM Towerco</strong> junto con <strong>Orange</strong>.
-        </li>
-        <li>
-          Desarrollo web <strong>Full Stack</strong> para herramientas internas.
-        </li>
-      </ul>
-    </Card>
-    <Card
-      heading="Web Frontend Developer"
-      subheading="NTT Data - CaixaBank"
-      date="Sep 2022 - Jun 2024 (1 año y 10 meses)"
-      imagePath="/src/assets/nttdata_logo.jpg"
-      altText="NTT Data - Empresa donde trabajó Ruben Romera como Web Frontend Developer para CaixaBank"
-      imageClass="h-12 w-auto md:-left-16"
-    >
-      <ul class="ml-4 list-disc text-muted-foreground">
-        <li>
-          Desarrollo del frontend con <strong>React</strong> para el proyecto <strong
-            >Caixabank</strong
-          >.
-        </li>
-        <li>
-          Desarrollo del frontend con <strong>React Native</strong> para el proyecto
-          <strong>Pepephone</strong>.
-        </li>
-      </ul>
-    </Card>
+    {experience.map((group) => <ExperienceGroup {...group} />)}
   </Section>
 
   <Section title="Proyectos">

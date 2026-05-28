@@ -1,0 +1,101 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { cn } from '@/utils/tailwind';
+import type { ExperienceGroup as ExperienceGroupType } from '@/utils/experience';
+
+type Props = ExperienceGroupType & {
+  class?: string;
+};
+
+const { class: className, imagePath, altText, imageClass, roles } =
+  Astro.props as Props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/*.{jpeg,jpg,png,gif}'
+);
+
+const normalizedImagePath = imagePath.startsWith('/src/assets/')
+  ? imagePath
+  : `/src/assets/${imagePath}`;
+
+const imageLoader = images[normalizedImagePath];
+
+if (!imageLoader) {
+  throw new Error(
+    `"${normalizedImagePath}" does not exist in glob: "/src/assets/*.{jpeg,jpg,png,gif}"`
+  );
+}
+---
+
+<article
+  class={cn(
+    className,
+    'experience-group relative rounded-2xl border border-border bg-primary-foreground px-5 py-3'
+  )}
+>
+  <Image
+    src={imageLoader()}
+    alt={altText}
+    class={cn('mb-3 rounded-full md:absolute md:mb-0', imageClass)}
+    loading="eager"
+  />
+
+  <div class="flex flex-col">
+    {
+      roles.map((role, index) => (
+        <div
+          class={cn(
+            'experience-role relative pl-7',
+            index < roles.length - 1 && 'pb-8'
+          )}
+        >
+          <span
+            class="timeline-dot absolute left-0 top-[0.4rem] z-10 size-3 shrink-0 rounded-full border-2 border-timeline bg-primary-foreground"
+            aria-hidden="true"
+          />
+          {index < roles.length - 1 && (
+            <span class="timeline-line" aria-hidden="true" />
+          )}
+          <div class="flex min-w-0 flex-col gap-y-1">
+            <h3 class="text-lg font-semibold leading-snug text-timeline">
+              {role.title}
+            </h3>
+            <p class="text-sm font-medium">{role.meta}</p>
+            <p
+              class="text-sm text-muted-foreground"
+              set:html={role.description}
+            />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</article>
+
+<style>
+  .experience-group {
+    --timeline-color: #7b8fd4;
+    --timeline-dot-size: 0.75rem;
+    --timeline-dot-offset: 0.4rem;
+    --timeline-rail-left: calc(var(--timeline-dot-size) / 2 - 1px);
+  }
+
+  .border-timeline {
+    border-color: var(--timeline-color);
+  }
+
+  .text-timeline {
+    color: var(--timeline-color);
+  }
+
+  /* From bottom of dot through padding and into the next role's dot */
+  .timeline-line {
+    position: absolute;
+    left: var(--timeline-rail-left);
+    top: calc(var(--timeline-dot-offset) + var(--timeline-dot-size));
+    width: 2px;
+    height: calc(100% - var(--timeline-dot-size));
+    background-color: var(--timeline-color);
+  }
+</style>
