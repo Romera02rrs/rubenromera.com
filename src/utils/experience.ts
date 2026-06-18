@@ -8,6 +8,8 @@ export type ExperienceGroup = {
   imagePath: string;
   altText: string;
   imageClass?: string;
+  company: string;
+  totalTenure: string;
   roles: ExperienceRole[];
 };
 
@@ -17,6 +19,8 @@ export const experience: ExperienceGroup[] = [
     altText:
       'Neverhack - Empresa donde trabaja Rubén Romera como desarrollador e instructor técnico',
     imageClass: 'h-12 w-auto md:-left-16',
+    company: 'Neverhack',
+    totalTenure: '2 años y 1 mes',
     roles: [
       {
         title: 'Full-Stack Developer & Technical Instructor',
@@ -35,12 +39,14 @@ export const experience: ExperienceGroup[] = [
   {
     imagePath: '/src/assets/nttdata_logo.jpg',
     altText:
-      'NTT DATA - Empresa donde trabajó Rubén Romera como desarrollador front-end',
+      'NTT DATA - Empresa donde trabajó Rubén Romera como desarrollador front-end (1 year 10 months)',
     imageClass: 'h-12 w-auto md:-left-16',
+    company: 'NTT DATA',
+    totalTenure: '1 año y 10 meses',
     roles: [
       {
         title: 'Front-End Web Developer',
-        meta: 'NTT DATA | Sep. 2022 - Jun. 2024 · (1 year 10 mths)',
+        meta: 'NTT DATA | Feb. 2023 - Jun. 2024 · (1 year 4 mths)',
         description:
           'I developed mortgage offer simulators for <strong>(CaixaBank)</strong> using React, focused on performance and usability.',
       },

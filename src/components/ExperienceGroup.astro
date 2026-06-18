@@ -8,7 +8,7 @@ type Props = ExperienceGroupType & {
   class?: string;
 };
 
-const { class: className, imagePath, altText, imageClass, roles } =
+const { class: className, imagePath, altText, imageClass, company, totalTenure, roles } =
   Astro.props as Props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -40,6 +40,13 @@ if (!imageLoader) {
     class={cn('mb-3 rounded-full md:absolute md:mb-0', imageClass)}
     loading="eager"
   />
+
+  <div class="mb-4 border-b border-border pb-3">
+    <p class="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+      Experiencia total en {company}
+    </p>
+    <p class="text-sm font-semibold text-foreground">{totalTenure}</p>
+  </div>
 
   <div class="flex flex-col">
     {
