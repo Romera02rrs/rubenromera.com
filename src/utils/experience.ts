@@ -24,7 +24,7 @@ export const experience: ExperienceGroup[] = [
     roles: [
       {
         title: 'Full-Stack Developer & Technical Instructor',
-        meta: 'Neverhack | Jul. 2025 - Present · (2 years)',
+        meta: 'Neverhack | Jul. 2025 - Present · (2 years 1 month)',
         description:
           'Development of the <strong>(NEVERHACK)</strong> internal ERP, creation of new projects and maintenance of existing ones with React, Node, Angular and Spring. Training the team in new AI technologies through classes and webinars.',
       },
@@ -46,13 +46,13 @@ export const experience: ExperienceGroup[] = [
     roles: [
       {
         title: 'Front-End Web Developer',
-        meta: 'NTT DATA | Feb. 2023 - Jun. 2024 · (1 year 4 mths)',
+        meta: 'NTT DATA | Feb. 2023 - Jun. 2024 · (1 year 4 months)',
         description:
           'I developed mortgage offer simulators for <strong>(CaixaBank)</strong> using React, focused on performance and usability.',
       },
       {
         title: 'Front-End Mobile Developer',
-        meta: 'NTT DATA | Sep. 2022 - Feb. 2023 · (6 mths)',
+        meta: 'NTT DATA | Sep. 2022 - Feb. 2023 · (6 months)',
         description:
           'I participated in the development of the <strong>(Pepephone)</strong> mobile application with React Native.',
       },
