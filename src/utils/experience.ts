@@ -13,6 +13,36 @@ export type ExperienceGroup = {
   roles: ExperienceRole[];
 };
 
+const calculateTenure = (startDate: Date, endDate = new Date()): string => {
+  let totalMonths =
+    (endDate.getUTCFullYear() - startDate.getUTCFullYear()) * 12 +
+    (endDate.getUTCMonth() - startDate.getUTCMonth());
+
+  if (endDate.getUTCDate() < startDate.getUTCDate()) {
+    totalMonths -= 1;
+  }
+
+  if (totalMonths < 0) {
+    return '0 meses';
+  }
+
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  const parts: string[] = [];
+
+  if (years > 0) {
+    parts.push(`${years} ${years === 1 ? 'año' : 'años'}`);
+  }
+
+  if (months > 0 || parts.length === 0) {
+    parts.push(`${months} ${months === 1 ? 'mes' : 'meses'}`);
+  }
+
+  return parts.join(' y ');
+};
+
+const NEVERHACK_START_DATE = new Date(Date.UTC(2024, 6, 1));
+
 export const experience: ExperienceGroup[] = [
   {
     imagePath: '/src/assets/neverhack_logo.jpg',
@@ -20,7 +50,7 @@ export const experience: ExperienceGroup[] = [
       'Neverhack - Empresa donde trabaja Rubén Romera como desarrollador e instructor técnico',
     imageClass: 'h-12 w-auto md:-left-16',
     company: 'Neverhack',
-    totalTenure: '2 años y 1 mes',
+    totalTenure: calculateTenure(NEVERHACK_START_DATE),
     roles: [
       {
         title: 'Full-Stack Developer & Technical Instructor',
